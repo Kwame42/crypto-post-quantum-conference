@@ -3,7 +3,7 @@
 \usepackage{wrapfig}
 \usepackage{tikz}
 \usepackage{circuitikz}
-
+\graphicspath{{./image/}}
 \usetheme{default}
 
 \title{Le hack du millenaire?}
@@ -35,80 +35,89 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}{Un processeur}{Transitors}
-  \begin{circuitikz}
-    \draw (0,2) node[npn](p1){p1};
-    \draw (0,0) node[npn](p2){p2};
-    \draw (-2,6) node[pnp](n1){n1};
-    \draw (0,4) node[pnp](n2){n2};
-    \draw (p1.E) -- (p2.C) ;
-    \draw (p2.B) |- (n2.B) ;
-    \draw (n1.B) |- (p1.B) ;
-    \draw (n1.C) |- (n2.C) ;
-    \draw (n2.C) to [short, *-o] ++(3,0) ;
-    \draw (n1.E) to [short, -o] ++(5,0) ;
-    \draw (n2.E) to [short, -*] ++(0,2) ;
-    \draw (p2.E) to [short, -o] ++(3,0) ;
-    \draw (p1.C) to (n2.C) ;
-    
-  \end{circuitikz}
-\end{frame}
-
-
-
-
-\begin{frame}{Un processeur}{Transitors}
-  \begin{circuitikz}
-    \draw [help lines] (-5,-5) grid (5,5);
-    --++(0,2) 
-    to[lamp] ++(2,0) 
-    to[R]++(2,0) 
-    --++ (0,-2) 
-    to[vsource] ++(-4,0);
-    \draw (0,2) --++(0,2) to[lamp] ++(2,0) 
-    to[R]++(2,0) 
-    --++ (0,-2)
-    ;
-  \end{circuitikz}
-\end{frame}
-
-\begin{frame}{Un processeur}{Portes Logiques}
-\end{frame}
-
-\begin{frame}{Un processeur}{Calculs}
-  \begin{tabular}{l|l}
-    1 & 0 0 1 \\
-    2 & 0 1 0 \\
-    3 & 0 1 1 \\
-    ... & ... \\
-  \end{tabular}
-\end{frame}
-
-\begin{frame}{Quelques bases}{P = NP}
+\begin{frame}{Un processeur}{Portes logiques = groupe de transistor / NAND}
   \begin{columns}
     \begin{column}{0.5\textwidth}
-      \begin{itemize}
-        \color{red}
-      \item Algorithmes NP : Compliqu\'{e}s
-        \color{blue}
-      \item Algorithmes P : ``faciles''
-      \end{itemize}
+      \begin{circuitikz}
+        \draw (0,2) node[npn](p1){};
+        \draw (0,0) node[npn](p2){};
+        \draw (-2,6) node[pnp](n1){};
+        \draw (0,4) node[pnp](n2){};
+        \draw (p1.E) -- (p2.C);
+        \draw (p2.B) |- (n2.B);
+        \draw (n1.B) |- (p1.B);
+        \draw (n1.C) |- (n2.C);
+        \draw (n2.C) to [short, *-o] ++(1.5,0);
+        \draw (n1.E) to [short, -o] ++(3.5,0);
+        \draw (n2.E) to [short, -*] ++(0,2);
+        \draw (p2.E) to [short, -o] ++(1.5,0);
+        \draw (p1.C) to (n2.C);
+        \draw (-3.5,1.5) to[short, o-*] (-0.84,1.5);
+        \draw (-3.5,4) to[short, o-*] (-2.84,4);
+        \draw node [left] at (-3.5, 4) {A};
+        \draw node [left] at (-3.5, 1.5) {B};
+        \draw node [above] at (1.25, 6) {0};
+        \draw node [below] at (1.25, 4) {out};
+        \draw node [below] at (1.25, 0) {1};
+      \end{circuitikz}
     \end{column}
-  
-    \begin{column}{0.5\textwidth}
-      \begin{tikzpicture}
-%        \draw[thick, red] (2,2) circle (2.5cm);
-%        \draw[thick, blue] (2,0.5) circle (1cm);
-        \draw[thick] (2,3.5) circle (4cm);
-      \end{tikzpicture}
+    \begin{column}{0.25\textwidth}
+      \begin{table}
+        \begin{tabular}{r|c|c}
+          A & B & Out  \\ \hline
+          0 & 0 & 1 \\
+          1 & 0 & 0 \\
+          0 & 1 & 0 \\
+          1 & 1 & 0 \\
+        \end{tabular}
+        \caption{NAND}
+      \end{table}
+    \end{column}
+    \begin{column}{0.25\textwidth}
+      \begin{circuitikz}
+        \draw (0,0) node[nand port] {};
+      \end{circuitikz}
     \end{column}
   \end{columns}
 \end{frame}
 
-\begin{frame}{Quelques bases}{P = NP}
+\begin{frame}{Les portes logiques}{le binaire: l'addition (NDLR: je sais y a pas le retenu on fera a l'oral :D)}
+  \begin{columns}
+    \begin{column}{0.25\textwidth}
+      \begin{table}
+        \begin{tabular}{c|c}
+          1 & 0 0 1  \\ \hline
+          2 & 0 1 0  \\ \hline
+          3 & 0 1 1  \\ \hline
+          ... &...
+        \end{tabular}
+      \end{table}
+      \begin{table}
+        \begin{tabular}{r|c|c}
+          A & B & Out  \\ \hline
+          0 & 0 & 0 \\
+          1 & 0 & 1 \\
+          0 & 1 & 1 \\
+          1 & 1 & 1 \\
+        \end{tabular}
+        \caption{OR}
+      \end{table}
+    \end{column}
+    \begin{column}{0.75\textwidth}
+      \begin{circuitikz}
+        \draw (0,0) node[or port] {};
+        \draw (0,2) node[or port] {};
+        \draw (0,4) node[or port] {};
+      \end{circuitikz}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Qui veut gagner 1 million ?}{P = NP}
   \begin{columns}
     \begin{column}{0.5\textwidth}
       \begin{itemize}
+      \item Algorithmes compliqu\'{e}s
         \color{red}
       \item Algorithmes NP : Compliqu\'{e}s \`a executer, facile \`a r\'esoudre
         \color{blue}
