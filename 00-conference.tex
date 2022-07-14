@@ -83,7 +83,7 @@
 
 \begin{frame}{Les portes logiques}{le binaire: l'addition (NDLR: je sais y a pas le retenu on fera a l'oral :D)}
   \begin{columns}
-    \begin{column}{0.25\textwidth}
+    \begin{column}{0.5\textwidth}
       \begin{table}
         \begin{tabular}{c|c}
           1 & 0 0 1  \\ \hline
@@ -91,6 +91,7 @@
           3 & 0 1 1  \\ \hline
           ... &...
         \end{tabular}
+        \caption{3 bit integer}
       \end{table}
       \begin{table}
         \begin{tabular}{r|c|c}
@@ -103,17 +104,26 @@
         \caption{OR}
       \end{table}
     \end{column}
-    \begin{column}{0.75\textwidth}
+    \begin{column}{0.5\textwidth}
       \begin{circuitikz}
-        \draw (0,0) node[or port] {};
-        \draw (0,2) node[or port] {};
-        \draw (0,4) node[or port] {};
+        \draw (0,0) node[or port] {2};
+        \draw (0,2) node[or port] {1};
+        \draw (0,4) node[or port] {0};
+        \draw node [above] at (-1.75, 4) {$1_1$};
+        \draw node [below] at (-1.75, 4) {$0_2$};
+        \draw node [above] at (-1.75, 2) {$0_1$};
+        \draw node [below] at (-1.75, 2) {$1_2$};
+        \draw node [above] at (-1.75, 0) {$0_1$};
+        \draw node [below] at (-1.75, 0) {$0_0$};
+        \draw node [] at (0.5, 4) {$1_3$};
+        \draw node [] at (0.5, 2) {$1_3$};
+        \draw node [] at (0.5, 0) {$0_3$};
       \end{circuitikz}
     \end{column}
   \end{columns}
 \end{frame}
 
-\begin{frame}{Qui veut gagner 1 million ?}{P = NP}
+\begin{frame}{Complexite des Algorithmes}
   \begin{columns}
     \begin{column}{0.5\textwidth}
       \begin{itemize}
@@ -135,7 +145,7 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}{Quelques bases}{Exemple}
+\begin{frame}{Algorithmes NP}{Exemple}
   \begin{columns}
     \begin{column}{0.5\textwidth}
       \begin{itemize}
@@ -153,7 +163,7 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}{Quelques bases}{choix des algorithmes de cryptographie}
+\begin{frame}{P = NP... }{... ou qui veut gagner 1 million ?}
   \begin{columns}
     \begin{column}{0.5\textwidth}
       Les algorithmes de crypto sont NP
