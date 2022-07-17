@@ -3,7 +3,12 @@
 \usepackage{wrapfig}
 \usepackage{tikz}
 \usepackage{circuitikz}
+\usepackage{amsmath}
+
+\usetikzlibrary{quantikz}
+
 \graphicspath{{./image/}}
+
 \usetheme{default}
 
 \title{Le hack du millenaire?}
@@ -83,16 +88,20 @@
 
 \begin{frame}{Les portes logiques}{le binaire: l'addition (NDLR: je sais y a pas le retenu on fera a l'oral :D)}
   \begin{columns}
-    \begin{column}{0.5\textwidth}
+    \begin{column}{0.3\textwidth}
       \begin{table}
         \begin{tabular}{c|c}
-          1 & 0 0 1  \\ \hline
-          2 & 0 1 0  \\ \hline
-          3 & 0 1 1  \\ \hline
-          ... &...
+          0 & 0 0 0  \\ \hline
+          \color{blue}1 & \color{blue}0 0 1  \\ \hline
+          \color{cyan}2 & \color{cyan}0 1 0  \\ \hline
+          \color{red}3 & \color{red}0 1 1  \\ \hline
+          ... &... \\ \hline
+          7 & 1 1 1  \\ \hline
         \end{tabular}
         \caption{3 bit integer}
       \end{table}
+    \end{column}
+    \begin{column}{0.3\textwidth}
       \begin{table}
         \begin{tabular}{r|c|c}
           A & B & Out  \\ \hline
@@ -104,20 +113,20 @@
         \caption{OR}
       \end{table}
     \end{column}
-    \begin{column}{0.5\textwidth}
+    \begin{column}{0.3\textwidth}
       \begin{circuitikz}
         \draw (0,0) node[or port] {2};
         \draw (0,2) node[or port] {1};
         \draw (0,4) node[or port] {0};
-        \draw node [above] at (-1.75, 4) {$1_1$};
-        \draw node [below] at (-1.75, 4) {$0_2$};
-        \draw node [above] at (-1.75, 2) {$0_1$};
-        \draw node [below] at (-1.75, 2) {$1_2$};
-        \draw node [above] at (-1.75, 0) {$0_1$};
-        \draw node [below] at (-1.75, 0) {$0_0$};
-        \draw node [] at (0.5, 4) {$1_3$};
-        \draw node [] at (0.5, 2) {$1_3$};
-        \draw node [] at (0.5, 0) {$0_3$};
+        \draw node [above] at (-1.75, 4) {\color{blue}$1_1$};
+        \draw node [below] at (-1.75, 4) {\color{cyan}$0_2$};
+        \draw node [above] at (-1.75, 2) {\color{blue}$0_1$};
+        \draw node [below] at (-1.75, 2) {\color{cyan}$1_2$};
+        \draw node [above] at (-1.75, 0) {\color{blue}$0_1$};
+        \draw node [below] at (-1.75, 0) {\color{cyan}$0_2$};
+        \draw node [] at (0.5, 4) {\color{red}$1_3$};
+        \draw node [] at (0.5, 2) {\color{red}$1_3$};
+        \draw node [] at (0.5, 0) {\color{red}$0_3$};
       \end{circuitikz}
     \end{column}
   \end{columns}
@@ -207,8 +216,77 @@
   \end{center}
 \end{frame}
 
-%\begin{frame}
-%\end{frame}
+\begin{frame}{le Q Bit}
+  \begin{equation*}
+    \ket{0} =
+    \begin{bmatrix}
+      1 \\
+      0 
+    \end{bmatrix}
+  \end{equation*}
+  ou par exemple 
+  \begin{equation*}
+    \ket{1} =
+    \begin{bmatrix}
+      0 \\
+      1 
+    \end{bmatrix}
+  \end{equation*}
+\end{frame}
+
+\begin{frame}{Les portes logiques quantiques}
+  \begin{columns}
+    \begin{column}{0.25\textwidth}
+      \begin{center}
+        \begin{circuitikz}[scale=0.8, transform shape]
+          \draw (0,0) node[not port] {};
+        \end{circuitikz}
+        \begin{table}
+          \begin{tabular}{r|c|c}
+            A & NOT A \\ \hline
+            0 & 1 \\
+            1 & 0 \\
+          \end{tabular}
+        \end{table}
+      \end{center}
+    \end{column}
+    \begin{column}{0.75\textwidth}
+      \begin{center}
+        \begin{quantikz}
+          \gate{X}\\
+        \end{quantikz}
+        \begin{equation*}
+          \begin{bmatrix}
+            \color{red}0 & \color{blue}1\\
+            \color{cyan}1 & \color{green}0
+          \end{bmatrix}
+          \begin{bmatrix}
+            1\\
+            0
+          \end{bmatrix}
+          =
+          \begin{bmatrix}
+            \color{red}0 \color{black}\times1 + \color{blue}1 \color{black}\times0\\
+            \color{cyan}1 \color{black}\times1 + \color{green}0 \color{black}\times0
+          \end{bmatrix}
+          =
+          \begin{bmatrix}
+            0\\
+            1
+          \end{bmatrix}
+        \end{equation*}
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Il est temps de coder !}
+  \begin{quantikz}
+    & \gate{X}\slice{step} & \ctrl{1} & \meter{} \\
+    & \qw & \targ{} & \ctrl{1} & \gate{H} & \qw \\
+    & \qw & \qw & \targ{} & \qw & \qw
+  \end{quantikz}
+\end{frame}
 
 \begin{frame}
         Merci !
