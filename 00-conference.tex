@@ -4,6 +4,7 @@
 \usepackage{tikz}
 \usepackage{circuitikz}
 \usepackage{amsmath}
+\usepackage{caption}
 
 \usetikzlibrary{quantikz}
 
@@ -13,7 +14,7 @@
 
 \title{Le hack du millenaire?}
 \subtitle{Et si on cassait RSA?}
-\author{Kwame Yamgnane - kw@qwasar.io}
+\author{Kwame Yamgnane - kw@qwasar.io - https://github.com/Kwame42/crypto-post-quantum-conference}
 \institute{Qwasar Silicon Valley}
 
 \begin{document}
@@ -217,6 +218,7 @@
 \end{frame}
 
 \begin{frame}{le Q Bit}
+  Etat propre...
   \begin{equation*}
     \ket{0} =
     \begin{bmatrix}
@@ -224,12 +226,20 @@
       0 
     \end{bmatrix}
   \end{equation*}
-  ou par exemple 
+  ...ou par exemple
   \begin{equation*}
     \ket{1} =
     \begin{bmatrix}
       0 \\
       1 
+    \end{bmatrix}
+  \end{equation*}
+    Mais aussi ...
+  \begin{equation*}
+    50\%\ket{0} + 50\%\ket{1} =
+    \begin{bmatrix}
+      0.5 \\
+      0.5 
     \end{bmatrix}
   \end{equation*}
 \end{frame}
@@ -280,12 +290,82 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}{Il est temps de coder !}
-  \begin{quantikz}
-    & \gate{X}\slice{step} & \ctrl{1} & \meter{} \\
-    & \qw & \targ{} & \ctrl{1} & \gate{H} & \qw \\
-    & \qw & \qw & \targ{} & \qw & \qw
-  \end{quantikz}
+\begin{frame}{Capacite de calcul}{Registre ?}
+  \begin{columns}
+    \begin{column}{0.25\textwidth}
+      \begin{table}
+        \begin{tabular}{ll}
+          1 & 000\\
+          2 & 001\\
+          3 & 010\\
+          4 & 011\\
+          5 & 100\\
+          6 & 101\\
+          7 & 110\\
+          8 & 111\\
+        \end{tabular}
+      \end{table}
+    \end{column}
+    \begin{column}{0.75\textwidth}
+      \begin{table}
+        $2^3 = 8$
+        \begin{tabular}{l}
+          $10\%\ket{000}+8\%\ket{001}+12\%\ket{010}+5\%\ket{011}$\\
+          $+10\%\ket{100}+20\%\ket{101}+5\%\ket{110}+30\%\ket{111}$\\
+        \end{tabular}
+      \end{table}
+      \begin{itemize}
+      \item attention 1 seule reponse possible !
+      \item Integer, registre de 64 bit 
+      \item soit en Qbits $2^{64} = 1.8x10^{19}$ fois plus rapide...
+      \item Mais on peut aussi faire des Qtrits : $3^{64} = 3.4x10^{30}$
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Algorithme de SHOR}{}
+  \includegraphics[height=5cm]{shor.png}
+  \begin{itemize}
+  \item 2000 Qbit 
+  \item $10^9$ Qbit avec code d'erreur...
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Ordinateur quantique}{Avec Google tout va plus vite :D }
+  \begin{center}
+    \includegraphics[height=3cm]{sycamore1.jpeg}
+    \includegraphics[height=3cm]{sycamore2.png}
+  \end{center}
+  \begin{itemize}
+  \item Google processeur Sycamore : 53 Qbit
+  \item Supremacie Quantique : 200s (53) vs 10,000 ans (1,000,000 de coeur)
+  \item Un algo qui ne sert a rien :D
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Alors qu'es ce qui tiens ?}
+  Creation de nouveaux algorithmes de securites \footnote{liste non exhaustive... meme si c'est le titre de la conference c'etait un pretexte pour vous presenter les ordi...}
+  \begin{itemize}
+    \item Clef publiques :
+      \begin{enumerate}
+      \item \href{https://pq-crystals.org/}{CRYSTALS-KYBER} : clef publiques
+      \end{enumerate}
+    \item Signature electronnique :
+      \begin{enumerate}
+      \item \href{https://pq-crystals.org/}{CRYSTALS-DILITHIUM} : clef publiques
+      \item \href{https://pq-crystals.org/}{FALCON} : clef publiques
+      \end{enumerate}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Il faut s'en occcuper}{meme si ce n'est pas pour tout de suite}
+  \begin{center}
+    \begin{figure}
+      \includegraphics[height=7cm]{eth.jpg}
+      \caption*{Credit photo: Mathias Herberts ETHCC[5] -- July 2022}
+    \end{figure}
+  \end{center}
 \end{frame}
 
 \begin{frame}
