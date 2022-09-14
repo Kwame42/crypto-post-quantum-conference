@@ -12,7 +12,7 @@
 
 \usetheme{default}
 
-\title{Le hack du millenaire?}
+\title{Le hack du mill\'enaire?}
 \subtitle{Et si on cassait RSA?}
 \author{Kwame Yamgnane - kw@qwasar.io - https://github.com/Kwame42/crypto-post-quantum-conference}
 \institute{Qwasar Silicon Valley}
@@ -24,7 +24,7 @@
         \titlepage
 \end{frame}
 
-\begin{frame}{Un processeur}{Transitors}
+\begin{frame}{Un processeur}{Transistors}
   \begin{columns}
     \begin{column}{0.5\textwidth}
       PNP
@@ -41,7 +41,7 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}{Un processeur}{Portes logiques = groupe de transistor / NAND}
+\begin{frame}{Un processeur}{Portes logiques = groupe de transistors / NAND}
   \begin{columns}
     \begin{column}{0.5\textwidth}
       \begin{circuitikz}
@@ -62,9 +62,9 @@
         \draw (-3.5,4) to[short, o-*] (-2.84,4);
         \draw node [left] at (-3.5, 4) {A};
         \draw node [left] at (-3.5, 1.5) {B};
-        \draw node [above] at (1.25, 6) {0};
+        \draw node [above] at (1.25, 6) {+Vcc};
         \draw node [below] at (1.25, 4) {out};
-        \draw node [below] at (1.25, 0) {1};
+        \draw node [below] at (1.25, 0) {GND};
       \end{circuitikz}
     \end{column}
     \begin{column}{0.25\textwidth}
@@ -72,8 +72,8 @@
         \begin{tabular}{r|c|c}
           A & B & Out  \\ \hline
           0 & 0 & 1 \\
-          1 & 0 & 0 \\
-          0 & 1 & 0 \\
+          1 & 0 & 1 \\
+          0 & 1 & 1 \\
           1 & 1 & 0 \\
         \end{tabular}
         \caption{NAND}
@@ -87,7 +87,7 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}{Les portes logiques}{le binaire: l'addition (NDLR: je sais y a pas le retenu on fera a l'oral :D)}
+\begin{frame}{Les portes logiques}{le binaire: l'addition (NDLR: je sais y a pas la retenue, on fera a l'oral :D)}
   \begin{columns}
     \begin{column}{0.3\textwidth}
       \begin{table}
@@ -133,15 +133,15 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}{Complexite des Algorithmes}
+\begin{frame}{Complexit\'e des Algorithmes}
   \begin{columns}
     \begin{column}{0.5\textwidth}
       \begin{itemize}
-      \item Algorithmes compliqu\'{e}s
+      \item Algorithmes compliqu\'es
         \color{red}
-      \item Algorithmes NP : Compliqu\'{e}s \`a executer, facile \`a r\'esoudre
+      \item Algorithmes NP : Compliqu\'es \`a ex\'ecuter, faciles \`a r\'esoudre
         \color{blue}
-      \item Algorithmes P : faciles \`a executer et \`a resoudre
+      \item Algorithmes P : faciles \`a ex\'ecuter et \`a r\'esoudre
       \end{itemize}
     \end{column}
   
@@ -192,20 +192,20 @@
 \begin{frame}{Quelques bases}{La m\'{e}canique quantique}
   \begin{center}
     \begin{tabular}{ c c c }
-      Le tout petit & \`{A} l'echelle humaine  & \`{A} partir de 1 \(M_\odot\) \\
-      (niveau Atom) & & \\
+      Le tout petit & \`{A} l'\'echelle humaine  & \`{A} partir de 1 \(M_\odot\) \\
+      (niveau Atome) & & \\
       \includegraphics[height=2cm]{Atome_lithium_rutherford.png} & \includegraphics[height=2cm]{TerreWorldWind.jpg} & \includegraphics[height=2cm]{04-965413833409_COI.jpeg}\\
-      Mecanique Quantique & Newton & Relativite generale \\
-       &  & Newton Etendu \\
+      M\'ecanique Quantique & Newton & Relativit\'e g\'en\'erale \\
+       &  & Newton \'Etendu \\
     \end{tabular}
   \end{center}
 \end{frame}
 
-\begin{frame}{Superposition Quantique}{``je suis inombrable''}
+\begin{frame}{Superposition Quantique}{``je suis innombrable''}
   \begin{center}
     \includegraphics[width=9cm]{3604843-inline.jpg}\\
     \vspace{0.5cm}
-    $\ket{\Psi} = a \ket{Jeune} + b \ket{Agee}$ 
+    $\ket{\Psi} = a \ket{Jeune} + b \ket{Ag\acute{e}e}$ 
   \end{center}
 \end{frame}
 
@@ -218,7 +218,7 @@
 \end{frame}
 
 \begin{frame}{le Q Bit}
-  Etat propre...
+  \'Etat propre...
   \begin{equation*}
     \ket{0} =
     \begin{bmatrix}
@@ -290,7 +290,7 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}{Capacite de calcul}{Registre ?}
+\begin{frame}{Capacit\'e de calcul}{Registre ?}
   \begin{columns}
     \begin{column}{0.25\textwidth}
       \begin{table}
@@ -315,8 +315,8 @@
         \end{tabular}
       \end{table}
       \begin{itemize}
-      \item attention 1 seule reponse possible !
-      \item Integer, registre de 64 bit 
+      \item attention 1 seule r\'eponse possible !
+      \item Integer, registre de 64 bits 
       \item soit en Qbits $2^{64} = 1.8x10^{19}$ fois plus rapide...
       \item Mais on peut aussi faire des Qtrits : $3^{64} = 3.4x10^{30}$
       \end{itemize}
@@ -327,8 +327,8 @@
 \begin{frame}{Algorithme de SHOR}{}
   \includegraphics[height=5cm]{shor.png}
   \begin{itemize}
-  \item 2000 Qbit 
-  \item $10^9$ Qbit avec code d'erreur...
+  \item 2000 Qbits 
+  \item $10^9$ Qbits avec code d'erreur...
   \end{itemize}
 \end{frame}
 
@@ -338,32 +338,32 @@
     \includegraphics[height=3cm]{sycamore2.png}
   \end{center}
   \begin{itemize}
-  \item Google processeur Sycamore : 53 Qbit
-  \item Supremacie Quantique : 200s (53) vs 10,000 ans (1,000,000 de coeur)
+  \item Google processeur Sycamore : 53 Qbits
+  \item Supr\'ematie Quantique : 200s (53) vs 10,000 ans (1,000,000 de c\oe{}urs)
   \item Un algo qui ne sert a rien :D
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Alors qu'es ce qui tiens ?}
-  Creation de nouveaux algorithmes de securites \footnote{liste non exhaustive... meme si c'est le titre de la conference c'etait un pretexte pour vous presenter les ordi...}
+\begin{frame}{Alors qu'est-ce qui tient ?}
+  Cr\'eation de nouveaux algorithmes de s\'ecurit\'e \footnote{liste non exhaustive... m\^eme si c'est le titre de la conf\'erence c'\'etait un pr\'etexte pour vous pr\'esenter les ordis...}
   \begin{itemize}
-    \item Clef publiques :
+    \item Clefs publiques :
       \begin{enumerate}
-      \item \href{https://pq-crystals.org/}{CRYSTALS-KYBER} : clef publiques
+      \item \href{https://pq-crystals.org/}{CRYSTALS-KYBER} : clefs publiques
       \end{enumerate}
-    \item Signature electronnique :
+    \item Signature \'electronique :
       \begin{enumerate}
-      \item \href{https://pq-crystals.org/}{CRYSTALS-DILITHIUM} : clef publiques
-      \item \href{https://pq-crystals.org/}{FALCON} : clef publiques
+      \item \href{https://pq-crystals.org/}{CRYSTALS-DILITHIUM} : signature \'electronique
+      \item \href{https://pq-crystals.org/}{FALCON} : signature \'electronique
       \end{enumerate}
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Il faut s'en occcuper}{meme si ce n'est pas pour tout de suite}
+\begin{frame}{Il faut s'en occcuper}{m\^eme si ce n'est pas pour tout de suite}
   \begin{center}
     \begin{figure}
       \includegraphics[height=7cm]{eth.jpg}
-      \caption*{Credit photo: Mathias Herberts ETHCC[5] -- July 2022}
+      \caption*{Cr\'edit photo: Mathias Herberts ETHCC[5] -- July 2022}
     \end{figure}
   \end{center}
 \end{frame}
@@ -372,11 +372,11 @@
         Merci !
 \end{frame}
 
-\begin{frame}{Exhibit}{Les conferences d'Alain Aspect}
+\begin{frame}{Exhibit}{Les conf\'erences d'Alain Aspect}
 
 \end{frame}
 
-\begin{frame}{Exhibit}{La chaine youtue de David Louarpe Science Etonnante}
+\begin{frame}{Exhibit}{La cha\^ine youtube de David Louarpe Science \'Etonnante}
   \begin{description}
   \item \href{https://www.youtube.com/watch?v=Rj3jTw2DxXQ&t=3s}{La mécanique quantique en 7 idées}
   \item \href{https://www.youtube.com/watch?v=5R6k2mEacZo&t=8s}{L'intrication quantique}
