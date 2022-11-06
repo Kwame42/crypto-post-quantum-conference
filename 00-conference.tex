@@ -15,122 +15,13 @@
 \title{Le hack du mill\'enaire?}
 \subtitle{Et si on cassait RSA?}
 \author{Kwame Yamgnane - kw@qwasar.io - https://github.com/Kwame42/crypto-post-quantum-conference}
-\institute{Qwasar Silicon Valley}
+\institute{Qwasar Silicon Valley -- EPITA 2001\footnote{meilleurs promo du monde dites ``Odyss\'e de l'Espace'' (tu peux pas test...)} Syst\`eme R\'eseau et S\'ecurit\'e}
 
 \begin{document}
 
 
 \begin{frame}
         \titlepage
-\end{frame}
-
-\begin{frame}{Un processeur}{Transistors}
-  \begin{columns}
-    \begin{column}{0.5\textwidth}
-      PNP
-      \begin{circuitikz}
-        \draw (0,0) node[pnp] (pnp) {};
-      \end{circuitikz}
-    \end{column}
-    \begin{column}{0.5\textwidth}
-      NPN
-      \begin{circuitikz}
-        \draw (0,0) node[npn] (npn) {};
-      \end{circuitikz}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-\begin{frame}{Un processeur}{Portes logiques = groupe de transistors / NAND}
-  \begin{columns}
-    \begin{column}{0.5\textwidth}
-      \begin{circuitikz}
-        \draw (0,2) node[npn](p1){};
-        \draw (0,0) node[npn](p2){};
-        \draw (-2,6) node[pnp](n1){};
-        \draw (0,4) node[pnp](n2){};
-        \draw (p1.E) -- (p2.C);
-        \draw (p2.B) |- (n2.B);
-        \draw (n1.B) |- (p1.B);
-        \draw (n1.C) |- (n2.C);
-        \draw (n2.C) to [short, *-o] ++(1.5,0);
-        \draw (n1.E) to [short, -o] ++(3.5,0);
-        \draw (n2.E) to [short, -*] ++(0,2);
-        \draw (p2.E) to [short, -o] ++(1.5,0);
-        \draw (p1.C) to (n2.C);
-        \draw (-3.5,1.5) to[short, o-*] (-0.84,1.5);
-        \draw (-3.5,4) to[short, o-*] (-2.84,4);
-        \draw node [left] at (-3.5, 4) {A};
-        \draw node [left] at (-3.5, 1.5) {B};
-        \draw node [above] at (1.25, 6) {+Vcc};
-        \draw node [below] at (1.25, 4) {out};
-        \draw node [below] at (1.25, 0) {GND};
-      \end{circuitikz}
-    \end{column}
-    \begin{column}{0.25\textwidth}
-      \begin{table}
-        \begin{tabular}{r|c|c}
-          A & B & Out  \\ \hline
-          0 & 0 & 1 \\
-          1 & 0 & 1 \\
-          0 & 1 & 1 \\
-          1 & 1 & 0 \\
-        \end{tabular}
-        \caption{NAND}
-      \end{table}
-    \end{column}
-    \begin{column}{0.25\textwidth}
-      \begin{circuitikz}
-        \draw (0,0) node[nand port] {};
-      \end{circuitikz}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-\begin{frame}{Les portes logiques}{le binaire: l'addition (NDLR: je sais y a pas la retenue, on fera a l'oral :D)}
-  \begin{columns}
-    \begin{column}{0.3\textwidth}
-      \begin{table}
-        \begin{tabular}{c|c}
-          0 & 0 0 0  \\ \hline
-          \color{blue}1 & \color{blue}0 0 1  \\ \hline
-          \color{cyan}2 & \color{cyan}0 1 0  \\ \hline
-          \color{red}3 & \color{red}0 1 1  \\ \hline
-          ... &... \\ \hline
-          7 & 1 1 1  \\ \hline
-        \end{tabular}
-        \caption{3 bit integer}
-      \end{table}
-    \end{column}
-    \begin{column}{0.3\textwidth}
-      \begin{table}
-        \begin{tabular}{r|c|c}
-          A & B & Out  \\ \hline
-          0 & 0 & 0 \\
-          1 & 0 & 1 \\
-          0 & 1 & 1 \\
-          1 & 1 & 1 \\
-        \end{tabular}
-        \caption{OR}
-      \end{table}
-    \end{column}
-    \begin{column}{0.3\textwidth}
-      \begin{circuitikz}
-        \draw (0,0) node[or port] {2};
-        \draw (0,2) node[or port] {1};
-        \draw (0,4) node[or port] {0};
-        \draw node [above] at (-1.75, 4) {\color{blue}$1_1$};
-        \draw node [below] at (-1.75, 4) {\color{cyan}$0_2$};
-        \draw node [above] at (-1.75, 2) {\color{blue}$0_1$};
-        \draw node [below] at (-1.75, 2) {\color{cyan}$1_2$};
-        \draw node [above] at (-1.75, 0) {\color{blue}$0_1$};
-        \draw node [below] at (-1.75, 0) {\color{cyan}$0_2$};
-        \draw node [] at (0.5, 4) {\color{red}$1_3$};
-        \draw node [] at (0.5, 2) {\color{red}$1_3$};
-        \draw node [] at (0.5, 0) {\color{red}$0_3$};
-      \end{circuitikz}
-    \end{column}
-  \end{columns}
 \end{frame}
 
 \begin{frame}{Complexit\'e des Algorithmes}
@@ -143,47 +34,20 @@
         \color{blue}
       \item Algorithmes P : faciles \`a ex\'ecuter et \`a r\'esoudre
       \end{itemize}
+      \vspace{0.5cm}
+      \begin{itemize}
+        \color{red}
+      \item Trouver les facteurs premiers de $82661 \leftarrow NP$
+      \item $41x43x47 = 82661 \leftarrow P$
+      \end{itemize}
     \end{column}
   
     \begin{column}{0.5\textwidth}
       \begin{tikzpicture}
         \draw[thick, red] (2,2) circle (2.5cm);
-        \draw[thick, blue] (2,0.5) circle (1cm);
-        \draw[thick] (2,3.5) circle (4cm);
-      \end{tikzpicture}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-\begin{frame}{Algorithmes NP}{Exemple}
-  \begin{columns}
-    \begin{column}{0.5\textwidth}
-      \begin{itemize}
-      \item Trouver les facteurs premiers de $82661 \leftarrow NP$
-      \item $41x43x47 = 82661 \leftarrow P$
-      \end{itemize}
-    \end{column}
-    
-    \begin{column}{0.5\textwidth}
-      \begin{tikzpicture}
-        \draw[thick, red] (2,2) circle (2.5cm);
-        \draw[thick, blue] (2,0.5) circle (1cm);
-      \end{tikzpicture}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-\begin{frame}{P = NP... }{... ou qui veut gagner 1 million ?}
-  \begin{columns}
-    \begin{column}{0.5\textwidth}
-      Les algorithmes de crypto sont NP
-    \end{column}
-    
-    \begin{column}{0.5\textwidth}
-      \begin{tikzpicture}
-        \draw[thick, red] (2,2) circle (2.5cm);
         \draw[thick, blue, dashed] (2,0.70) circle (1.2cm);
         \draw[thick, blue] (2,0.5) circle (1cm);
+        \draw[thick] (2,3.5) circle (4cm);
       \end{tikzpicture}
     \end{column}
   \end{columns}
@@ -196,12 +60,19 @@
       (niveau Atome) & & \\
       \includegraphics[height=2cm]{Atome_lithium_rutherford.png} & \includegraphics[height=2cm]{TerreWorldWind.jpg} & \includegraphics[height=2cm]{04-965413833409_COI.jpeg}\\
       M\'ecanique Quantique & Newton & Relativit\'e g\'en\'erale \\
-       &  & Newton \'Etendu \\
+      &  & Newton \'Etendu \\
+      & $F = G \times \frac{m_a \times m_b}{(d_{ab})^2}$& \\
     \end{tabular}
   \end{center}
 \end{frame}
 
-\begin{frame}{Superposition Quantique}{``je suis innombrable''}
+\begin{frame}{1927}{Congr\`{e} de Solvay}
+  \begin{center}
+    \includegraphics[width=10cm]{solvay.jpeg}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Superposition Quantique}{``je suis innombrable'' - Invention du transisor 1947}
   \begin{center}
     \includegraphics[width=9cm]{3604843-inline.jpg}\\
     \vspace{0.5cm}
@@ -213,11 +84,30 @@
   \begin{center}
         \includegraphics[width=9cm]{intrication.png}\\
     \vspace{0.5cm}
-    $\ket{\Psi(v1, v2)} = \frac{1}{\sqrt{2}}(\ket{\Psi(\uparrow\downarrow)} - \ket{\Psi(\downarrow\uparrow)})$
+    $\ket{\Psi(a, b)} = \frac{1}{\sqrt{2}}(\ket{\Psi(\color{red}\uparrow\color{blue}\downarrow\color{black})} - \ket{\Psi(\color{red}\downarrow\color{blue}\uparrow\color{black})})$
   \end{center}
 \end{frame}
 
-\begin{frame}{le Q Bit}
+\begin{frame}{Intrication Quantique}{``Inegalit\'{e} de Bell'' - loophole - 1964}
+  \begin{center}
+    \begin{itemize}
+    \item $\ket{\Psi(a, b)} = \frac{1}{\sqrt{2}}(\ket{\Psi(\uparrow\downarrow)} - \ket{\Psi(\downarrow\uparrow)})$
+    \item $A(\color{red}\lambda\color{black}, a) = +1$ ou $-1$
+    \item $B(\color{red}\lambda\color{black}, b) = +1$ ou $-1$
+    \end{itemize}
+    \vspace{0.5cm}
+    \includegraphics[width=7cm]{bell-svg.png}\\
+  \end{center}
+\end{frame}
+
+\begin{frame}{1982, 2022}{Mais bien noter 2015}
+  \begin{center}
+    \includegraphics[width=10cm]{alain-aspect.jpeg}
+  \end{center}
+\end{frame}
+
+
+\begin{frame}{L'information quantique... 1982 !}
   \'Etat propre...
   \begin{equation*}
     \ket{0} =
@@ -293,6 +183,7 @@
 \begin{frame}{Capacit\'e de calcul}{Registre ?}
   \begin{columns}
     \begin{column}{0.25\textwidth}
+        $2^3 = 8$
       \begin{table}
         \begin{tabular}{ll}
           1 & 000\\
@@ -308,7 +199,6 @@
     \end{column}
     \begin{column}{0.75\textwidth}
       \begin{table}
-        $2^3 = 8$
         \begin{tabular}{l}
           $10\%\ket{000}+8\%\ket{001}+12\%\ket{010}+5\%\ket{011}$\\
           $+10\%\ket{100}+20\%\ket{101}+5\%\ket{110}+30\%\ket{111}$\\
@@ -372,8 +262,15 @@
         Merci !
 \end{frame}
 
-\begin{frame}{Exhibit}{Les conf\'erences d'Alain Aspect}
+\begin{frame}{Exhibit}{Les livres \`a lire}
+  \begin{description}
+  \item \href{https://dokumen.pub/quantum-computing-an-applied-approach-9783030239213-9783030239220.html}{Jack Hidary, Quantum computing. An applied approach}
+  \item \href{https://www.oezratty.net/wordpress/wp-content/themes/Ezratty5/forcedownload.php?file=/Files/Publications/Comprendre\%20Informatique\%20Quantique\%20Olivier\%20Ezratty.pdf}{Olivier Ezratty, Comprendre l’informatique quantique}
+  \end{description}
+\end{frame}
 
+\begin{frame}{Exhibit}{Les conf\'erences d'Alain Aspect}
+  \href{https://www.youtube.com/watch?v=6_hfvgOcSTQ&ab_channel=Festivald\%27AstronomiedeFleurance}{conferences}
 \end{frame}
 
 \begin{frame}{Exhibit}{La cha\^ine youtube de David Louarpe Science \'Etonnante}
@@ -385,14 +282,6 @@
   \item \href{https://www.youtube.com/watch?v=hB1kmGzpIrw}{Le mystère des gâteaux quantiques}
   \item \href{https://www.youtube.com/watch?v=KaRd_eB2qOA}{La Suprématie Quantique de Google}
   \item \href{https://www.youtube.com/watch?v=AgtOCNCejQ8}{P = NP}
-  \end{description}
-\end{frame}
-
-\begin{frame}{Exhibit}{Disclaimer}
-  \begin{description}
-  \item Speakable and Unspeakable in Quantum Mechanics: Collected Papers on Quantum Philosophy
-  \item L'Impensable Hasard: Non-localité, téléportation et autres merveilles quantiques
-  \item Introduction to Quantum Optics: From the Semi-classical Approach to Quantized Light
   \end{description}
 \end{frame}
 
